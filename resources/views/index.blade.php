@@ -16,4 +16,6 @@
     </header>
 
     <livewire:link-checker::links />
+
+    @livewireScriptConfig
 @endsection
