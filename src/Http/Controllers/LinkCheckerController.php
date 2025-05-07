@@ -2,7 +2,6 @@
 
 namespace Martinoak\StatamicLinkChecker\Http\Controllers;
 
-
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\View\View;

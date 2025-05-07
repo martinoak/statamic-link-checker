@@ -1,1 +1,23 @@
 @import "tailwindcss/utilities";
+
+@layer utilities {
+    th {
+        @apply cursor-pointer;
+    }
+
+    .paginator {
+        /* PAGINATION */
+        @apply mx-auto max-w-7xl pt-4 sm:px-6 lg:px-8;
+        & nav {
+            @apply flex items-center justify-between border-t border-gray-200 px-4 sm:px-0;
+        }
+    }
+
+    .pag-item {
+        @apply inline-flex items-center border-t-2 border-transparent pt-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 cursor-pointer;
+    }
+
+    .pag-item-active {
+        @apply inline-flex items-center border-t-2 border-primary px-4 pt-4 text-sm font-medium text-primary cursor-pointer;
+    }
+}

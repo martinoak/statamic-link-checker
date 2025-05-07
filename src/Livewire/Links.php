@@ -17,6 +17,9 @@ class Links extends Component
 
     public array $filter = [];
 
+    public bool $showRedirects = true;
+    public bool $mineOnly = false;
+
     public int $page = 1;
 
     public function setFilter($field, mixed $value): void
@@ -42,15 +45,23 @@ class Links extends Component
 
     public function getLinks(): LengthAwarePaginator
     {
-        $data = Link::query();
+        $query = Link::query();
 
         if (!empty($this->filter)) {
             foreach ($this->filter as $field => $value) {
-                $data->where($field, $value);
+                $query->where($field, $value);
             }
         }
 
-        return $data->orderBy($this->sortBy, $this->sortDirection)
+        if (! $this->showRedirects) {
+            $query->where('code', '<', '300')->orWhere('code', '>=', '303');
+        }
+
+        if ($this->mineOnly) {
+            $query->where('editor', '=', auth()->user()->id);
+        }
+
+        return $query->orderBy($this->sortBy, $this->sortDirection)
             ->paginate(self::PER_PAGE, ['*'], 'page', $this->page);
     }
 

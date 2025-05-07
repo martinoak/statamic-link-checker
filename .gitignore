@@ -2,5 +2,6 @@ node_modules
 vendor
 composer.lock
 .phpunit.result.cache
+resources/dist/*
 .idea
 .vscode
