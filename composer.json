@@ -1,0 +1,37 @@
+{
+    "name": "martinoak/statamic-link-checker",
+    "autoload": {
+        "psr-4": {
+            "Martinoak\\StatamicLinkChecker\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Martinoak\\StatamicLinkChecker\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "statamic/cms": "^5.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Statamic Link Checker",
+            "description": "Statamic Link Checker addon"
+        },
+        "laravel": {
+            "providers": [
+                "Martinoak\\StatamicLinkChecker\\ServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
