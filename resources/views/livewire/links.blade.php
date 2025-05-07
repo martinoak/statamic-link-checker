@@ -29,8 +29,9 @@
             @foreach ($links as $link)
                 <tr class="outline-none" tabindex="0" wire:key="link-{{ $link->id }}">
                     <td>
-                        @php $source = \Statamic\Facades\Entry::find(\Symfony\Component\Yaml\Yaml::parse(str_replace('---', '', file_get_contents($link->source)))['id']); @endphp
-                        <a href="{{ $source->editUrl() }}">{{ $source->title }}</a>
+<!--                         @php $source = \Statamic\Facades\Entry::find(\Symfony\Component\Yaml\Yaml::parse(str_replace('---', '', file_get_contents($link->source)))['id']); @endphp
+                        <a href="{{ $source->editUrl() }}">{{ $source->title }}</a> -->
+                        TODO
                     </td>
                     <td>
                         <span class="font-mono text-xs">{{$link->url}}</span>
