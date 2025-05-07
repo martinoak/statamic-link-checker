@@ -134,7 +134,7 @@ class Checker
                         'code' => $status,
                         'url' => $link,
                         'source' => $file,
-                        'editor' => $data['updated_by'],
+                        'editor' => $data['updated_by'] ?? 'No editor yet',
                     ]);
                     return [$email => [$status => $description]];
                 }
@@ -144,7 +144,7 @@ class Checker
                     'code' => $e->getCode(),
                     'url' => $link,
                     'source' => $file,
-                    'editor' => $data['updated_by'],
+                    'editor' => $data['updated_by'] ?? 'No editor yet',
                 ]);
 
                 return [$email => [$e->getCode() => $description]];
