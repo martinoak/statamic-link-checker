@@ -43,7 +43,7 @@ th {
 }
 
 .select-wrapper {
-    @apply inline-flex items-center justify-between px-2 py-1 border-2 border-gray-300 rounded-lg cursor-pointer text-black;
+    @apply inline-flex items-center justify-between px-2 py-1 border-2 border-gray-300 rounded-lg cursor-pointer;
 }
 
 /* Dropdown animations */
