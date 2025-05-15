@@ -4,6 +4,7 @@ namespace Martinoak\StatamicLinkChecker;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Support\Facades\URL;
 use Martinoak\StatamicLinkChecker\Model\Link;
 use Statamic\Facades\Entry;
 use Statamic\Facades\User;
@@ -18,6 +19,8 @@ class Checker
     protected const EXCLUDE = ['.', '..', '.git', '.gitkeep', '.gitignore', 'README.md'];
     private Yaml $yaml;
     private Client $client;
+
+    private int $counter = 0;
 
     public function __construct(
         string $mail,
@@ -85,7 +88,7 @@ class Checker
 
         preg_match_all('#(https?://[^\'")\s]+)#', file_get_contents($file), $absMatches);
         preg_match_all('#:\s(/[^\'")\s]+)#', file_get_contents($file), $relMatches);
-        preg_match_all('#statamic://entry::([^\'")\s]+)#', file_get_contents($file), $idMatches);
+        preg_match_all('#((statamic://)?entry::[^\'")\s]+)#', file_get_contents($file), $idMatches);
 
         $merge = array_merge($merge, $absolute ? $this->processMatches($file, $absMatches, 'absolute') : []);
         $merge = array_merge($merge, $relative ? $this->processMatches($file, $relMatches, 'relative') : []);
@@ -121,41 +124,41 @@ class Checker
 
         $description = sprintf("**%s (%s):** %s", $data['title'] ?? 'Title není', basename($file), $link);
 
-        if (!$id) {
-            try {
-                $response = $this->client->get($link, ['allow_redirects' => false]);
-                $status = $response->getStatusCode();
+        $id && $link = URL::to('/') . Entry::find(preg_match('#(statamic://)?entry::([a-zA-Z0-9_]+)#', $link, $matches) ? $matches[2] : $link)->url();
 
-                if (in_array($status, self::SKIP_CODES)) {
-                    return [];
-                } else {
-                    Link::create([
-                        'app-index' => env('APP_INDEX'),
-                        'code' => $status,
-                        'url' => $link,
-                        'source' => $file,
-                        'editor' => $data['updated_by'] ?? 'No editor yet',
-                    ]);
-                    return [$email => [$status => $description]];
-                }
-            } catch (GuzzleException $e) {
+        try {
+            $response = $this->client->get($link, ['allow_redirects' => false]);
+            $status = $response->getStatusCode();
+
+            if (in_array($status, self::SKIP_CODES)) {
+                return [];
+            } else {
                 Link::create([
                     'app-index' => env('APP_INDEX'),
-                    'code' => $e->getCode(),
-                    'url' => $link,
+                    'code' => $status,
+                    'url' => $id ? Entry::find($link)->url() : $link,
                     'source' => $file,
                     'editor' => $data['updated_by'] ?? 'No editor yet',
                 ]);
-
-                return [$email => [$e->getCode() => $description]];
+                return [$email => [$status => $description]];
             }
-        }
+        } catch (GuzzleException $e) {
+            Link::create([
+                'app-index' => env('APP_INDEX'),
+                'code' => $e->getCode(),
+                'url' => $link,
+                'source' => $file,
+                'editor' => $data['updated_by'] ?? 'No editor yet',
+            ]);
 
-        if (Entry::find($link) === null) {
-            return [$email => [404 => $description]];
+            return [$email => [$e->getCode() => $description]];
         }
-
-        return [];
+//
+//        if (Entry::find($link) === null) {
+//            return [$email => [404 => $description]];
+//        }
+//
+//        return [];
     }
 
 }

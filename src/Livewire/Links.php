@@ -98,7 +98,7 @@ class Links extends Component
                             $q->orWhere('url', 'like', '/%');
                             break;
                         case 'id':
-                            $q->orWhere('url', 'like', '%::%');
+                            $q->orWhere('url', 'like', '%entry::%');
                             break;
                     }
                 }
