@@ -32,6 +32,7 @@ class ServiceProvider extends AddonServiceProvider
         });
 
         Livewire::component('link-checker::links', Links::class);
+        Livewire::component('link-checker::run-button', \Martinoak\StatamicLinkChecker\Livewire\RunButton::class);
 
         Nav::extend(function ($nav) {
             $nav->tools('Link Checker')

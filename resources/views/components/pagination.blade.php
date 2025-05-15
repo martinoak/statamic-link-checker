@@ -1,4 +1,4 @@
-<div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6 dark:bg-zinc-800! dark:border-zinc-700">
+<div class="paginator">
   <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
     <div>
       <p class="text-sm text-gray-700 dark:text-zinc-300">

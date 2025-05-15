@@ -124,11 +124,21 @@ class Checker
 
         $description = sprintf("**%s (%s):** %s", $data['title'] ?? 'Title není', basename($file), $link);
 
-        $id && $link = URL::to('/') . Entry::find(preg_match('#(statamic://)?entry::([a-zA-Z0-9_-]+)#', $link, $matches) ? $matches[2] : $link)->url();
+        if ($id) {
+            preg_match('#(statamic://)?entry::([a-zA-Z0-9_-]+)#', $link, $matches);
+            $entryExists = Entry::find($matches[2]) !== null;
+            if ($entryExists) {
+                $link = URL::to('/') . Entry::find($matches[2])->url();
+            }
+        }
 
         try {
-            $response = $this->client->get($link, ['allow_redirects' => false]);
-            $status = $response->getStatusCode();
+            if (! $id ||$id && $entryExists) {
+                $response = $this->client->get($link, ['allow_redirects' => false]);
+                $status = $response->getStatusCode();
+            } else {
+                $status = 404;
+            }
 
             if (in_array($status, self::SKIP_CODES)) {
                 return [];
@@ -136,7 +146,7 @@ class Checker
                 Link::create([
                     'app-index' => env('APP_INDEX'),
                     'code' => $status,
-                    'url' => $id ? Entry::find($link)->url() : $link,
+                    'url' => $link,
                     'source' => $file,
                     'editor' => $data['updated_by'] ?? 'No editor yet',
                 ]);

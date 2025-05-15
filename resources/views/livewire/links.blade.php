@@ -82,7 +82,18 @@
         </div>
     </div>
 
-    <div class="card p-0">
+    <div class="card p-0 relative">
+        <!-- Table loading indicator -->
+        <div wire:loading.flex wire:target="sort, paginate, toggleStatusCode, toggleLinkType, showRedirects, mineOnly" class="absolute inset-0 bg-white bg-opacity-75 dark:bg-zinc-800 dark:bg-opacity-75 z-10 items-center justify-center">
+            <div class="flex items-center">
+                <svg class="animate-spin h-8 w-8 text-emerald-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span class="text-emerald-500 font-medium">Aktualizace dat...</span>
+            </div>
+        </div>
+
         <table data-size="sm" tabindex="0" class="data-table">
             <thead>
             <tr>
