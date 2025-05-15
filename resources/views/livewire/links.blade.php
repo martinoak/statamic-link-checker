@@ -5,7 +5,7 @@
                 <ul class="flex w-full gap-2">
                     <li>
                         <input wire:model.live="showRedirects" id="showRedirects" type="checkbox" class="hidden peer" @checked($showRedirects)>
-                        <label for="showRedirects" class="inline-flex items-center justify-between px-2 py-1  border-2 border-primary rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-secondary dark:peer-checked:border-secondary hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-700">
+                        <label for="showRedirects" class="checkbox-wrapper">
                             <div class="block">
                                 <div class="w-full">Zobrazit přesměrování @if($showRedirects) <i class="fa-solid fa-check ml-2"></i> @else <i class="fa-solid fa-xmark ml-2"></i> @endif</div>
                             </div>
@@ -13,7 +13,7 @@
                     </li>
                     <li>
                         <input wire:model.live="mineOnly" id="mineOnly" type="checkbox" class="hidden peer" @checked($mineOnly)>
-                        <label for="mineOnly" class="inline-flex items-center justify-between px-2 py-1  border-2 border-primary rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-secondary dark:peer-checked:border-secondary hover:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-700">
+                        <label for="mineOnly" class="checkbox-wrapper">
                             <div class="block">
                                 <div class="w-full">Pouze mé odkazy @if($mineOnly) <i class="fa-solid fa-check ml-2"></i> @else <i class="fa-solid fa-xmark ml-2"></i> @endif</div>
                             </div>
