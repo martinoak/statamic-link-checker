@@ -36,12 +36,12 @@
                                 </span>
                             </button>
 
-                            <div x-show="open" x-on:click.outside="open = false" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden dark:bg-gray-700 dark:ring-gray-600" role="menu" x-cloak>
+                            <div x-show="open" x-on:click.outside="open = false" class="dropdown" role="menu" x-cloak>
                                 <div class="py-1" role="none">
                                     @foreach($statusCodes as $code)
                                         <div class="flex items-center p-3">
                                             <input id="status-{{ $code['value'] }}" type="checkbox" wire:model.live="statusCodesSelected.{{ $code['value'] }}" class="w-4 h-4 text-blue-600 bg-gray-100 rounded-sm dark:bg-gray-600 dark:border-gray-500">
-                                            <label for="status-{{ $code['value'] }}" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $code['label'] }}</label>
+                                            <label for="status-{{ $code['value'] }}" class="d-text">{{ $code['label'] }}</label>
                                         </div>
                                     @endforeach
                                 </div>
@@ -65,12 +65,12 @@
                                 </span>
                             </button>
 
-                            <div x-show="open" x-on:click.outside="open = false" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden dark:bg-gray-700 dark:ring-gray-600" role="menu" x-cloak>
+                            <div x-show="open" x-on:click.outside="open = false" class="dropdown" role="menu" x-cloak>
                                 <div class="py-1" role="none">
                                     @foreach($linkTypes as $type)
                                         <div class="flex items-center p-3">
                                             <input id="type-{{ $type['value'] }}" type="checkbox" wire:model.live="linkTypesSelected.{{ $type['value'] }}" class="w-4 h-4 text-blue-600 bg-gray-100 rounded-sm dark:bg-gray-600 dark:border-gray-500">
-                                            <label for="type-{{ $type['value'] }}" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $type['label'] }}</label>
+                                            <label for="type-{{ $type['value'] }}" class="d-text">{{ $type['label'] }}</label>
                                         </div>
                                     @endforeach
                                 </div>

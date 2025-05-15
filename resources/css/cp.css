@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 th {
     @apply cursor-pointer;
 }
@@ -25,10 +27,10 @@ th {
 }
 
 .checkbox-wrapper {
-    @apply inline-flex items-center justify-between px-2 py-1 border-2 border-gray-300 rounded-lg cursor-pointer;
+    @apply inline-flex items-center justify-between text-black! px-2 py-1 border-2 border-gray-300 rounded-lg cursor-pointer;
 
     &:hover {
-        @apply bg-emerald-300 border-emerald-300;
+        @apply bg-emerald-500 border-emerald-300;
     }
 
     .peer:checked + & {
@@ -36,18 +38,24 @@ th {
     }
 
     @variant dark {
+        @apply text-white!;
+
         &:hover {
-            @apply bg-emerald-400 border-emerald-300;
+            @apply bg-emerald-700 border-emerald-300;
         }
 
         .peer:checked + & {
-            @apply bg-emerald-500 border-emerald-500;
+            @apply bg-emerald-700 border-emerald-500;
         }
     }
 }
 
 .select-wrapper {
-    @apply inline-flex items-center justify-between px-2 py-1 border-2 border-gray-300 rounded-lg cursor-pointer;
+    @apply inline-flex items-center justify-between px-2 py-1 border-2 border-gray-300 rounded-lg cursor-pointer dark:text-white!;
+}
+
+.dropdown {
+    @apply absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-hidden dark:bg-zinc-800! dark:ring-zinc-700!;
 }
 
 /* Dropdown animations */
@@ -61,6 +69,10 @@ th {
 
 .dropdown-enter-to, .dropdown-leave-from {
     @apply transform opacity-100 scale-100;
+}
+
+.d-text {
+    @apply ms-2 text-sm font-medium text-gray-900 dark:text-gray-300!;
 }
 
 .button-badge {
