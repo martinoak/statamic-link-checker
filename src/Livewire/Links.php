@@ -12,7 +12,7 @@ class Links extends Component
 {
     const ASC = 'asc';
     const DESC = 'desc';
-    const PER_PAGE = 15;
+    const PER_PAGE = 1;
 
     public string $sortBy = 'code';
     public string $sortDirection = self::DESC;
@@ -28,12 +28,19 @@ class Links extends Component
 
     public array $linkTypesSelected = [];
 
-    protected $updatesQueryString = ['statusCodesSelected', 'linkTypesSelected'];
+    protected $updatesQueryString = ['statusCodesSelected', 'linkTypesSelected', 'page', 'sortBy', 'sortDirection', 'showRedirects', 'mineOnly'];
+
+    public function updated($propertyName): void
+    {
+        if (in_array($propertyName, ['showRedirects', 'mineOnly'])) {
+            $this->resetPage();
+        }
+    }
 
     public function setFilter($field, mixed $value): void
     {
         $this->filter[$field] = $value;
-        $this->page = 1;
+        $this->resetPage();
     }
 
     public function sort(string $by): void
@@ -49,6 +56,11 @@ class Links extends Component
     public function paginate(int $page): void
     {
         $this->page = $page;
+    }
+
+    public function resetPage(): void
+    {
+        $this->page = 1;
     }
 
     public function getLinks(): LengthAwarePaginator
@@ -133,7 +145,7 @@ class Links extends Component
         } else {
             $this->statusCodesSelected[] = $code;
         }
-        $this->page = 1;
+        $this->resetPage();
     }
 
     public function toggleLinkType(string $type): void
@@ -143,7 +155,7 @@ class Links extends Component
         } else {
             $this->linkTypesSelected[] = $type;
         }
-        $this->page = 1;
+        $this->resetPage();
     }
 
     public function render(): View
