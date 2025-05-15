@@ -4,6 +4,10 @@ th {
     @apply cursor-pointer;
 }
 
+[x-cloak] {
+    display: none !important;
+}
+
 .paginator {
     /* PAGINATION */
     @apply mx-auto max-w-7xl pt-4 sm:px-6 lg:px-8;
@@ -59,12 +63,6 @@ th {
     @apply transform opacity-100 scale-100;
 }
 
-/* Badge styling */
 .button-badge {
-    @apply flex h-5 w-5 items-center justify-center rounded-full bg-blue-500 text-xs text-white absolute -top-4 -right-4 z-10;
-}
-
-/* Make sure Alpine.js elements are hidden until Alpine initializes */
-[x-cloak] {
-    display: none !important;
+    @apply flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500 text-xs text-white absolute -top-4 -right-4 z-10;
 }
