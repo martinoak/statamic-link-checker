@@ -12,7 +12,7 @@ class Links extends Component
 {
     const ASC = 'asc';
     const DESC = 'desc';
-    const PER_PAGE = 1;
+    const PER_PAGE = 15;
 
     public string $sortBy = 'code';
     public string $sortDirection = self::DESC;
