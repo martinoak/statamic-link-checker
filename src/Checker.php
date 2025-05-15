@@ -124,7 +124,7 @@ class Checker
 
         $description = sprintf("**%s (%s):** %s", $data['title'] ?? 'Title není', basename($file), $link);
 
-        $id && $link = URL::to('/') . Entry::find(preg_match('#(statamic://)?entry::([a-zA-Z0-9_]+)#', $link, $matches) ? $matches[2] : $link)->url();
+        $id && $link = URL::to('/') . Entry::find(preg_match('#(statamic://)?entry::([a-zA-Z0-9_-]+)#', $link, $matches) ? $matches[2] : $link)->url();
 
         try {
             $response = $this->client->get($link, ['allow_redirects' => false]);
