@@ -23,24 +23,11 @@ th {
 .checkbox-wrapper {
     @apply inline-flex items-center justify-between px-2 py-1 border-2 border-gray-300 rounded-lg cursor-pointer;
 
-    /* Light mode hover state */
-    &:hover {
-        @apply bg-emerald-300 text-black border-gray-300;
-    }
-
-    /* Light mode checked state */
     .peer:checked + & {
-        @apply bg-emerald-500 text-black border-emerald-500;
+        @apply bg-emerald-500 border-emerald-500;
     }
 
-    /* Dark mode normal state */
     @variant dark {
-        /* Dark mode hover state */
-        &:hover {
-            @apply bg-emerald-400 text-white border-gray-300;
-        }
-
-        /* Dark mode checked state */
         .peer:checked + & {
             @apply bg-emerald-500 text-white border-emerald-500;
         }
