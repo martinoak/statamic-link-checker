@@ -1,0 +1,50 @@
+{
+    "name": "martinoak/statamic-link-checker",
+    "description": "Universal link checker for Statamic v6 – checking link availability in content and showing them in CP.",
+    "type": "statamic-addon",
+    "keywords": [
+        "statamic",
+        "statamic-addon",
+        "link-checker",
+        "broken-links"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.3",
+        "guzzlehttp/guzzle": "^7.0",
+        "statamic/cms": "^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0 || ^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Martinoak\\LinkChecker\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Martinoak\\LinkChecker\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "statamic": {
+            "name": "Link Checker",
+            "slug": "statamic-link-checker",
+            "description": "Internal and external link checking in site content",
+            "providers": [
+                "Martinoak\\LinkChecker\\ServiceProvider"
+            ]
+        },
+        "laravel": {
+            "providers": [
+                "Martinoak\\LinkChecker\\ServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
