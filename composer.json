@@ -35,7 +35,7 @@
             "providers": [
                 "Martinoak\\LinkChecker\\ServiceProvider"
             ],
-            "editions": ["free", "pro"]
+            "editions": ["pro"]
         },
         "laravel": {
             "providers": [
