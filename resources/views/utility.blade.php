@@ -160,9 +160,6 @@
                                             {{ $link['url'] }}
                                         @endif
                                     </div>
-                                    @if (! empty($link['error']))
-                                        <div class="text-xs text-red-600 mt-1">{{ $link['error'] }}</div>
-                                    @endif
                                     @if (! empty($link['final_url']) && $link['final_url'] !== $link['url'])
                                         <div class="text-xs text-gray-400 mt-1">→ {{ $link['final_url'] }}</div>
                                     @endif
