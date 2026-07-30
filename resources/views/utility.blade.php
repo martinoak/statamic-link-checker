@@ -153,15 +153,15 @@
                                     <ui-badge color="{{ $badge[0] }}" text="{{ $badge[1] }}"></ui-badge>
                                 </ui-table-cell>
                                 <ui-table-cell>
-                                    <div class="break-all text-xs font-mono">
+                                    <div class="text-xs font-mono max-w-xl">
                                         @if (str_starts_with((string) $link['url'], 'http'))
-                                            <a href="{{ $link['url'] }}" target="_blank" rel="noopener" class="text-blue-600 hover:underline">{{ $link['url'] }}</a>
+                                            <a href="{{ $link['url'] }}" target="_blank" rel="noopener" title="{{ $link['url'] }}" class="block truncate text-blue-600 hover:underline">{{ $link['url'] }}</a>
                                         @else
-                                            {{ $link['url'] }}
+                                            <span class="block truncate" title="{{ $link['url'] }}">{{ $link['url'] }}</span>
                                         @endif
                                     </div>
                                     @if (! empty($link['final_url']) && $link['final_url'] !== $link['url'])
-                                        <div class="text-xs text-gray-400 mt-1">→ {{ $link['final_url'] }}</div>
+                                        <div class="text-xs text-gray-400 mt-1 max-w-xl truncate" title="{{ $link['final_url'] }}">→ {{ $link['final_url'] }}</div>
                                     @endif
                                     <form method="POST" action="{{ $filter === 'ignored' ? $unignore_url : $ignore_url }}" class="mt-1">
                                         {!! csrf_field() !!}
