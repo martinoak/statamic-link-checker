@@ -34,7 +34,8 @@
             "description": "Internal and external link checking in site content",
             "providers": [
                 "Martinoak\\LinkChecker\\ServiceProvider"
-            ]
+            ],
+            "editions": ["free", "pro"]
         },
         "laravel": {
             "providers": [
